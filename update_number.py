@@ -81,7 +81,7 @@ def update_cron_with_random_time():
     random_minute = random.randint(0, 59)
 
     # Define the new cron job command
-    new_cron_command = f"{random_minute} {random_hour} * * * cd {script_dir} && FANCY_JOB_USE_LLM=true /home/milan/.local/bin/uv run /usr/bin/python3 {os.path.join(script_dir, 'update_number.py')}\n"
+    new_cron_command = f"""{random_minute} {random_hour} * * * eval "$(ssh-agent -s)" && ssh-add /home/milan/.ssh/milanpantelic95@gmail.com && cd {script_dir} && FANCY_JOB_USE_LLM=true /home/milan/.local/bin/uv run /usr/bin/python3 {os.path.join(script_dir, 'update_number.py')}\n"""
 
     # Get the current crontab
     cron_file = "/tmp/current_cron"
